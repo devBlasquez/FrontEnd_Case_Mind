@@ -3,7 +3,7 @@ import { Container, ButtonText } from "./styles"
 
 export function Button({ children, ...rest }) {
 	return (
-		<Container {...rest} Container>
+		<Container {...rest}>
 			<ButtonText>{children}</ButtonText>
 		</Container>
 	)
