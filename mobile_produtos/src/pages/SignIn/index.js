@@ -5,10 +5,12 @@ import { Ionicons } from "@expo/vector-icons"
 import Toast from "react-native-toast-message"
 import * as Yup from "yup"
 import Logo from "../../assets/logo.png"
+
 import { Input } from "../../components/Input"
 import { Container, Image, ForgotText, ParagraphText } from "./styles"
 import { Button } from "../../components/Button"
-// import { useAuth } from "../../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth"
+
 import { colors } from "../../styles/colors"
 import { fonts } from "../../styles/fonts"
 
@@ -18,11 +20,43 @@ export default function SignIn() {
 	const [showPassword, setShowPassword] = useState("")
 	const [validationErrors, setValidationErrors] = useState("")
 
-	// const { SignIn } = useAuth()
+	const { SignIn } = useAuth()
 
 	const navigation = useNavigation()
 
-	async function handleSignIn() {}
+	async function handleSignIn() {
+		try {
+			setValidationErrors({})
+
+			const schema = Yup.object().shape({
+				email: Yup.string()
+					.required("Email obrigatório")
+					.email("O email precisa ser válidado"),
+				password: Yup.string().required("Senha obrigatória"),
+			})
+
+			const data = { email, password }
+			await schema.validate(data, { abortEarly: false })
+
+			await SignIn(data)
+			navigation.reset({ index: 0, routes: [{ name: "Home" }] })
+		} catch (err) {
+			if (err instanceof Yup.ValidationError) {
+				err.inner.forEach((error) => {
+					setValidationErrors((state) => {
+						return { ...state, [error.path || ""]: error.message }
+					})
+				})
+			}
+			return Toast.show({
+				type: "error",
+				position: "bottom",
+				text1: "Erro",
+				text2:
+					"Não foi possível salvar alguma informação, tente relogar no app",
+			})
+		}
+	}
 
 	return (
 		<Container>

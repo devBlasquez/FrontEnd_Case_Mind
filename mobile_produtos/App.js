@@ -17,6 +17,8 @@ import {
 	WorkSans_700Bold,
 } from "@expo-google-fonts/work-sans"
 
+import { AuthProvider } from "./src/contexts/AuthContext"
+
 import Routes from "./src/routes"
 
 SplashScreen.preventAutoHideAsync()
@@ -41,9 +43,11 @@ export default function App() {
 	}
 
 	return (
-		<NavigationContainer>
-			<Routes />
-			<Toast />
-		</NavigationContainer>
+		<AuthProvider>
+			<NavigationContainer>
+				<Routes />
+				<Toast />
+			</NavigationContainer>
+		</AuthProvider>
 	)
 }
