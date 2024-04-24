@@ -60,7 +60,7 @@ export default function SignIn() {
 
 	return (
 		<Container>
-			<Image source={Logo} />
+			<Image source={Logo} resizeMode="contain" />
 			<Input
 				placeholder="Login"
 				placeholderTextColor={colors.gray}
