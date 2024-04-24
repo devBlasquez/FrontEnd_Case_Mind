@@ -10,7 +10,7 @@ import { Container, ParagraphText } from "./styles"
 import { Button } from "../../components/Button"
 import { Input } from "../../components/Input"
 
-// import {api} from `../../services/api`
+import {api} from `../../services/api.js`
 import { colors } from "../../styles/colors"
 
 export default function SignUp() {
@@ -26,52 +26,52 @@ export default function SignUp() {
 	const navigation = useNavigation()
 
 	async function handleSaveRegisters() {
-		// try{
-		//     setValidationErrors({})
-		//     const schema = Yup.object().shape({
-		//         name: Yup.string().required("Nome Obrigatório"),
-		//         email: Yup.string()
-		//         .email("O email precisa ser válido")
-		//         .required("Email Obrigatório"),
-		//         password: Yup.string()
-		//         .required("Senha obrigatória")
-		//         .min(6, "A senha precisa ter no mínimo 6 caracteres"),
-		//         confirmPassword: Yup.string().oneOf(
-		//             [Yup.ref("password"), null],
-		//             "As senhas precisam ser iguais"
-		//         )
-		//     })
-		//     let data = {name, email, password, confirmPassword}
-		//     await schema.validate(data, {abortEarly: false})
-		//     await api.post("/users", data)
-		//     Toast.show({
-		//         type: "success",
-		//         text1: "Sucesso",
-		//         text2: "Cadastro Realizado",
-		//     })
-		//     navigation.goBack()
-		// } catch(err) {
-		//     if(err instanceof Yup.ValidationError){
-		//         err.inner.forEach((error) =>{
-		//             setValidationErrors((state)=>{
-		//                 return{
-		//                     ...state,
-		//                     [error.path || ""]: error.message,
-		//                 }
-		//             })
-		//         })
-		//     }
-		//     return Toast.show({
-		//         type: "error",
-		//         text1: "Erro",
-		//         text2: err.inner[0].message,
-		//     })
-		// }
-		//     Toast.show({
-		//         type: "error",
-		//         text1: "Erro",
-		//         text2: "Não foi possíveç realizar o cadastro, tente novamente",
-		//     })
+		try{
+		    setValidationErrors({})
+		    const schema = Yup.object().shape({
+		        name: Yup.string().required("Nome Obrigatório"),
+		        email: Yup.string()
+		        .email("O email precisa ser válido")
+		        .required("Email Obrigatório"),
+		        password: Yup.string()
+		        .required("Senha obrigatória")
+		        .min(6, "A senha precisa ter no mínimo 6 caracteres"),
+		        confirmPassword: Yup.string().oneOf(
+		            [Yup.ref("password"), null],
+		            "As senhas precisam ser iguais"
+		        )
+		    })
+		    let data = {name, email, password, confirmPassword}
+		    await schema.validate(data, {abortEarly: false})
+		    await api.post("/users", data)
+		    Toast.show({
+		        type: "success",
+		        text1: "Sucesso",
+		        text2: "Cadastro Realizado",
+		    })
+		    navigation.goBack()
+		} catch(err) {
+		    if(err instanceof Yup.ValidationError){
+		        err.inner.forEach((error) =>{
+		            setValidationErrors((state)=>{
+		                return{
+		                    ...state,
+		                    [error.path || ""]: error.message,
+		                }
+		            })
+		        })
+		    }
+		    return Toast.show({
+		        type: "error",
+		        text1: "Erro",
+		        text2: err.inner[0].message,
+		    })
+		}
+		    Toast.show({
+		        type: "error",
+		        text1: "Erro",
+		        text2: "Não foi possível realizar o cadastro, tente novamente",
+		    })
 	}
 	return (
 		<Container>

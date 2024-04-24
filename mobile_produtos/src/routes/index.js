@@ -26,5 +26,5 @@ export default function routes() {
 			</View>
 		)
 	}
-	return user ? <Authroutes /> : <Authroutes />
+	return user ? <AppRoutes /> : <Authroutes />
 }

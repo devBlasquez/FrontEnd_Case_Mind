@@ -23,8 +23,7 @@ export function AuthProvider({ children }) {
 			])
 
 			if (storagedToken[1] && storagedUser[1]) {
-				api.defaults.headers.authorization =
-					"Bearer " + JSON.parse(storagedToken[1])
+				api.defaults.headers.authorization = "Bearer " + storagedToken[1]
 				setUser(JSON.parse(storagedUser[1]))
 			}
 

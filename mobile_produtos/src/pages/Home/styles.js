@@ -10,7 +10,7 @@ export const Container = styled.View`
 `
 export const Header = styled.View`
 	height: 80px;
-	padding: 0 18px;
+	padding: 0 15px;
 	flex-direction: row;
 	align-items: center;
 	justify-content: space-between;
@@ -21,7 +21,7 @@ export const ProfileContent = styled.TouchableOpacity`
 `
 
 export const ProfileTexts = styled.View`
-	margin-left: 5%;
+	align-self: center;
 `
 export const UserWelcomeText = styled.Text`
 	font-family: ${fonts.dmSans400};
@@ -39,5 +39,5 @@ export const LogoutButton = styled.TouchableOpacity`
 `
 export const LogoutButtonText = styled.Text`
 	font-family: ${fonts.dmSans500};
-	font-size: 16px;
+	font-size: 12px;
 `

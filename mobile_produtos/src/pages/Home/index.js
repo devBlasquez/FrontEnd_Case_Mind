@@ -2,7 +2,6 @@ import React from "react"
 import { useNavigation } from "@react-navigation/native"
 import { Ionicons } from "@expo/vector-icons"
 import Toast from "react-native-toast-message"
-
 import { useAuth } from "../../hooks/useAuth"
 import { colors } from "../../styles/colors"
 
@@ -40,13 +39,13 @@ export default function Home() {
 			<Header>
 				<ProfileContent onPress={() => navigation.navigate("Profile")}>
 					<ProfileTexts>
+						<UserWelcomeText>Bem-vindo(a)</UserWelcomeText>
 						<UserWelcomeSpanText>{user?.name}</UserWelcomeSpanText>
 					</ProfileTexts>
 				</ProfileContent>
-
 				<LogoutButton onPress={handleLoggout}>
 					<LogoutButtonText>Logout</LogoutButtonText>
-					<Ionicons name="md-arrow-back" color={colors.black} size={20} />
+					<Ionicons name="arrow-back" color={colors.black} size={20} />
 				</LogoutButton>
 			</Header>
 		</Container>

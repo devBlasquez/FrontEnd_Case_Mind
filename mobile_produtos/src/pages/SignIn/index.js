@@ -7,9 +7,9 @@ import * as Yup from "yup"
 import Logo from "../../assets/logo.png"
 
 import { Input } from "../../components/Input"
-import { Container, Image, ForgotText, ParagraphText } from "./styles"
+import { Container, Image, ParagraphText } from "./styles"
 import { Button } from "../../components/Button"
-import { useAuth } from "../../hooks/useAuth"
+import { useAuth } from "../../hooks/useAuth.js"
 
 import { colors } from "../../styles/colors"
 import { fonts } from "../../styles/fonts"
@@ -20,7 +20,7 @@ export default function SignIn() {
 	const [showPassword, setShowPassword] = useState("")
 	const [validationErrors, setValidationErrors] = useState("")
 
-	const { SignIn } = useAuth()
+	const { signIn } = useAuth()
 
 	const navigation = useNavigation()
 
@@ -38,8 +38,8 @@ export default function SignIn() {
 			const data = { email, password }
 			await schema.validate(data, { abortEarly: false })
 
-			await SignIn(data)
-			navigation.reset({ index: 0, routes: [{ name: "Home" }] })
+			await signIn(data)
+			navigation.navigate({ index: 0, routes: [{ name: "Home" }] })
 		} catch (err) {
 			if (err instanceof Yup.ValidationError) {
 				err.inner.forEach((error) => {
